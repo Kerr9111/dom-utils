@@ -1,0 +1,16 @@
+{
+  "name": "dom-utils",
+  "version": "1.0.0",
+  "description": "A lightweight DOM and SVG creation utility",
+  "main": "DomUtils.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kerr9111/dom-utils.git"
+  },
+  "keywords": ["DOM", "HTML", "SVG", "JavaScript", "utility"],
+  "author": "Kerr9111",
+  "license": "MIT"
+}
