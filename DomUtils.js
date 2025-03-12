@@ -4,24 +4,31 @@
 
 export default class  DOMUtils {
     /**
-     * Создает DOM элемент с возмодностью вложенности.
-     * @param {Object} [config] - конфигурация DOM элемента
-     * @param {String} [config.tag] - Тэг эемента. По умолчанию DIV.
-     * @param {Array} [config.classList] - Массив классов для объекта ['class1','class2'] и т.д.
-     * @param {Object} [config.props] - Свойства элемента. Например props{textContent: 'текст'}
-     * @param {String} [config.props.textContent] - Текст элемента
-     * @param {String} [config.props.innerHTML] - HTML внутри элемента
-     * @param {String} [config.props.placeholder] - placeholder
-     * @param {String} [config.props.type] - input type
-     * @param {String} [config.props.name] - input name
-     * @param {Object} [config.attributes] - Аттрибуты элемента. Например attributes{'data-set': 'text'}.
-     * @param {Object} [config.styles] - Стили элемента. Например styles{zIndex: '100'}.
-     * @param {Object} [config.events] - События, который вешаются на элемент. Например events{click: () => {}}
-     * @param {Array} [config.children] - Массив дочерних объектов. Обладает всеми теми же ключами, что и родительский: tag, props, children и т.д.
-     * */
+     * Создает DOM или SVG элемент с возможностью вложенности.
+     * @param {Object} [config] - конфигурация элемента
+     * @param {String} [config.namespace] - Пространство имен элемента ("html" или "svg"). По умолчанию "html".
+     * @param {String} [config.tag] - Тэг элемента. По умолчанию "div".
+     * @param {Array} [config.classList] - Классы CSS (['class1','class2']).
+     * @param {Object} [config.props] - Свойства элемента (textContent, innerHTML, placeholder и т.д.).
+     * @param {Object} [config.attributes] - Атрибуты элемента (например, {'data-id': '123'}).
+     * @param {Object} [config.styles] - CSS стили ({ zIndex: '100' }).
+     * @param {Object} [config.events] - События (например, { click: () => {} }).
+     * @param {Array} [config.children] - Вложенные элементы.
+     * @returns {HTMLElement|SVGElement}
+     */
     createElement(config) {
         if(config !== null) {
-            const element = document.createElement(config.tag || 'div');
+            const namespace = config.namespace || 'html';
+            const tag = config.tag || 'div';
+
+            let element;
+            if (namespace === 'svg') {
+                element = document.createElementNS('http://www.w3.org/2000/svg', tag);
+            } else {
+                element = document.createElement(tag);
+            }
+
+            // Добавляем классы
             if (config.classList) {
                 config.classList.forEach(className => {
                     if(className !== '') {
@@ -30,6 +37,7 @@ export default class  DOMUtils {
                 });
             }
 
+            // Добавляем атрибуты
             if (config.attributes) {
                 for (const [key, value] of Object.entries(config.attributes)) {
                     if(value) {
@@ -38,10 +46,12 @@ export default class  DOMUtils {
                 }
             }
 
+            // Устанавливаем стили
             if (config.styles) {
                 this.setStyles(element, config.styles);
             }
 
+            // Устанавливаем свойства элемента (для обычных HTML-элементов)
             if (config.props) {
                 for (const [key, value] of Object.entries(config.props)) {
                     if (key in element) {
@@ -50,6 +60,7 @@ export default class  DOMUtils {
                 }
             }
 
+            // Добавляем обработчики событий
             if (config.events) {
                 for (const [evt, fn] of Object.entries(config.events)) {
                     if (typeof fn === 'function') {
@@ -60,6 +71,7 @@ export default class  DOMUtils {
                 }
             }
 
+            // Добавляем дочерние элементы
             if (config.children) {
                 config.children.forEach(child => {
                     if(child instanceof HTMLElement) {
@@ -73,6 +85,12 @@ export default class  DOMUtils {
             return element;
         }
     }
+
+    /**
+     * Устанавливает стили элемента
+     * @param {HTMLElement} element
+     * @param {Object} styles
+     */
     setStyles(element, styles) {
         if (styles && typeof styles === 'object') {
             for (const [key, value] of Object.entries(styles)) {
