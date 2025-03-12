@@ -2,9 +2,10 @@
   "name": "dom-utils",
   "version": "1.0.0",
   "description": "A lightweight DOM and SVG creation utility",
+  "type": "module",
   "main": "DomUtils.js",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -12,5 +13,11 @@
   },
   "keywords": ["DOM", "HTML", "SVG", "JavaScript", "utility"],
   "author": "Kerr9111",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "babel-jest": "^29.7.0",
+    "@babel/preset-env": "^7.22.0"
+  }
 }
