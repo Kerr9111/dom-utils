@@ -1,5 +1,5 @@
 {
-  "name": "dom-utils",
+  "name": "@kerr9111/dom-utils",
   "version": "1.0.0",
   "description": "A lightweight DOM and SVG creation utility",
   "type": "module",
