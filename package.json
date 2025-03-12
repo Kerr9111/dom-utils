@@ -1,6 +1,6 @@
 {
   "name": "dom-utils-light",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight DOM and SVG creation utility",
   "type": "module",
   "main": "DomUtils.js",
@@ -11,7 +11,13 @@
     "type": "git",
     "url": "https://github.com/Kerr9111/dom-utils.git"
   },
-  "keywords": ["DOM", "HTML", "SVG", "JavaScript", "utility"],
+  "keywords": [
+    "DOM",
+    "HTML",
+    "SVG",
+    "JavaScript",
+    "utility"
+  ],
   "author": "Kerr9111",
   "license": "MIT",
   "devDependencies": {
