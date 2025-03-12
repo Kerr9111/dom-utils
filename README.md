@@ -55,7 +55,7 @@ const div = domUtils.createElement({
 document.body.appendChild(div);
 ```
 
-## Creating an HTML element
+## Creating an SVG element
 
 ```js
 const svgElement = domUtils.createElement({
