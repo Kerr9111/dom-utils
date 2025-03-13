@@ -11,13 +11,13 @@
 You can install DOMUtils via npm:
 
 ```sh
-npm install dom-utils
+npm install dom-utils-light
 ```
 
 Or use it directly in your project:
 
 ```js
-import DOMUtils from './DomUtils.js';
+import DOMUtils from "dom-utils-light";
 ```
 
 # Usage
